@@ -1,0 +1,73 @@
+install.packages("zoo")
+install.packages("devtools")
+devtools::install_github("FinYang/tsdl")
+install.packages("nortest")
+install.packages("fBasics")
+install.packages("forecast")
+install.packages("tseries")
+install.packages("randtests")
+install.packages("astsa")
+install.packages("lmtest")
+library("zoo")
+library(tsdl)
+library(nortest)
+library(fBasics)
+library(forecast)
+library(tseries)
+library(randtests)
+library(astsa)
+library(lmtest)
+
+
+n = tsdl [[468]]
+ attributes(n)
+  plot(n)
+ lines(n)
+lines(lowess(n))
+
+
+adf.test(n)
+
+ n1=diff(n,diffrence=1)
+ plot(n1)
+ lines(n1)
+ lines(lowess(n1))
+ adf.test(n1))     
+
+  fit1 = arima(n,order=c(0,1,1),seasonal=list(order=c(0,0,2),period=12))
+ coeftest(fit1)
+ 
+  fit2 = arima(n,order=c(0,1,1),seasonal=list(order=c(0,0,1),period=12))
+ coeftest(fit2)
+ 
+  tsdiag(fit1)
+Box.test(res1,lag=12,type=c("Ljung-Box"))
+
+tsdiag(fit2)
+Box.test(res2,lag=12,type=c("Ljung-Box"))
+
+runs.test(fit1$res)
+
+runs.test(fit2$res)
+
+t.test(fit1$res)
+
+t.test(fit2$res)
+
+shapiro.test(res1)
+
+shapiro.test(fit2$res)
+
+fit1$aic
+
+fit2$aic
+
+auto.arima(n)
+
+  f=forecast(fit1, h=12)
+   autoplot(f)
+  f
+
+
+
+
